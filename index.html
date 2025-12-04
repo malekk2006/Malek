@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Your Name — Cyber Security Student</title>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="bg-canvas"></div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#home">Your Name</a>
+
+      <nav id="nav" class="nav">
+        <a href="#about">About</a>
+        <a href="#university">University</a>
+        <a href="#specialty">Specialty</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="controls">
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
+        <button id="menu-toggle" class="icon-btn mobile-only" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero">
+      <div class="hero-left">
+        <h1>Your Full Name</h1>
+        <p class="lead">Cyber Security Student · Interested in network security, penetration testing, and vulnerability analysis</p>
+        <div class="hero-cta">
+          <a href="#specialty" class="btn">Learn About the Specialty</a>
+          <a href="#projects" class="btn ghost">My Projects</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="avatar-wrap">
+          <img src="assets/avatar.jpg" alt="Your photo" class="avatar">
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="card">
+      <h2>About Me</h2>
+      <p>Write a short bio here: studies, technical skills (for example: networking, operating systems, Python, penetration testing tools), and your career goals.</p>
+    </section>
+
+    <section id="university" class="card">
+      <h2>My University</h2>
+      <div class="univ-grid">
+        <div>
+          <h3>University Name</h3>
+          <p>Information about the university: faculty, programs, founding year, campus highlights, and academic strengths.</p>
+        </div>
+        <div>
+          <h3>Facilities and Labs</h3>
+          <p>Computer labs, cyber security labs, student clubs, internship opportunities, and research centers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="specialty" class="card">
+      <h2>Cyber Security Specialty</h2>
+      <article class="spec">
+        <h3>Introduction</h3>
+        <p>General definition of cyber security, its importance, and main areas: network security, application security, malware analysis, incident response.</p>
+
+        <h3>Core Courses</h3>
+        <ul>
+          <li>Networking fundamentals and operating systems</li>
+          <li>Cryptography and protection mechanisms</li>
+          <li>Penetration testing and tools</li>
+          <li>Incident analysis and response</li>
+        </ul>
+
+        <h3>Suggested Practical Path</h3>
+        <ol>
+          <li>Learn networking basics and Linux</li>
+          <li>Master a programming language such as Python</li>
+          <li>Practice with tools like Wireshark, Nmap, Metasploit</li>
+          <li>Participate in CTFs and build a home lab</li>
+        </ol>
+      </article>
+    </section>
+
+    <section id="projects" class="card">
+      <h2>Projects</h2>
+      <div class="grid" id="projects-list">
+        <!-- Projects are added dynamically by JS -->
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+      <p>Links: <a href="#">GitHub</a> · <a href="#">LinkedIn</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    © <span id="year"></span> Your Name — Cyber Security Student
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
