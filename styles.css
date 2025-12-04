@@ -1,7 +1,6 @@
 :root{
   --bg:#071029; --card:#0f1724; --text:#e6eef8; --accent:#6c5ce7; --muted:#9aa7bf;
-  --light-bg:#f6f8ff; --light-text:#0b1220;
-  --social-size:44px;
+  --light-bg:#f6f8ff; --light-text:#0b1220; --social-size:44px;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -16,6 +15,10 @@ body{
   radial-gradient(ellipse at 10% 20%, rgba(108,92,231,0.12) 0%, transparent 20%),
   radial-gradient(ellipse at 90% 80%, rgba(6,182,212,0.08) 0%, transparent 18%);animation:bgShift 12s linear infinite;mix-blend-mode:screen}
 @keyframes bgShift{0%{transform:translateY(0)}50%{transform:translateY(-30px)}100%{transform:translateY(0)}}
+#bg-animated::before,#bg-animated::after{content:"";position:absolute;inset:0;background-image:
+  radial-gradient(circle at 20% 30%, rgba(255,255,255,0.02) 0 2px, transparent 3px),
+  radial-gradient(circle at 70% 60%, rgba(255,255,255,0.015) 0 2px, transparent 3px);animation:particleMove 20s linear infinite}
+@keyframes particleMove{0%{transform:translateX(0)}50%{transform:translateX(-40px)}100%{transform:translateX(0)}}
 
 /* Layout */
 .container{max-width:1100px;margin:0 auto;padding:20px;position:relative;z-index:2}
@@ -37,7 +40,7 @@ body{
 .hero-sub{margin:0 0 16px;color:var(--muted)}
 .bio-decor pre{white-space:pre-wrap;font-family:inherit;background:transparent;color:var(--text);margin:12px 0;padding:8px;border-radius:8px}
 
-/* Profile card and hero image */
+/* Profile card */
 .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.6);text-align:center;transition:transform .35s ease, box-shadow .35s ease}
 .profile-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,6,23,0.8)}
 .hero-image{width:320px;height:320px;border-radius:16px;object-fit:cover;border:3px solid rgba(255,255,255,0.04);display:block;margin:0 auto;transition:transform .6s, filter .4s}
@@ -55,7 +58,7 @@ body{
 .skill-bar{background:rgba(255,255,255,.03);height:12px;border-radius:8px;overflow:hidden}
 .skill-fill{height:100%;background:linear-gradient(90deg,var(--accent),#06b6d4);width:0;transition:width 1.2s cubic-bezier(.2,.9,.2,1)}
 
-/* Social icons styling consistent */
+/* Social icons */
 .inline-social{margin-top:12px}
 .social{display:inline-flex;align-items:center;justify-content:center;width:var(--social-size);height:var(--social-size);border-radius:10px;margin-right:8px;color:var(--text);text-decoration:none;background:rgba(255,255,255,0.02);transition:transform .18s ease, background .18s ease}
 .social i{font-size:18px}
