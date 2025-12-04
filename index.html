@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="bg-animated"></div>
+
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
@@ -20,30 +22,38 @@
       </div>
 
       <div class="controls">
-        <button id="themeToggle" class="btn">زر الضوء</button>
-        <button id="langToggle" class="btn">EN</button>
+        <button id="themeToggle" class="btn" aria-label="Toggle theme">زر الضوء</button>
+        <button id="langToggle" class="btn" aria-label="Toggle language">EN</button>
       </div>
     </div>
   </header>
 
   <main class="container">
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero" id="home">
       <div class="hero-left">
         <h2 class="hero-title">مرحباً — أنا مالك العستال</h2>
         <p class="hero-sub">طالب ومتخصص في الأمن السيبراني. أشارك موارد، مشاريع، وروابط تعليمية مفيدة.</p>
         <div class="hero-actions">
-          <a href="#portfolio" class="btn primary">تصفح أعمالي</a>
-          <a href="https://wa.me/972598561044" class="btn outline">تحميل السيرة أو تواصل واتس اب</a>
+          <a href="#resources" class="btn primary">تصفح الموارد</a>
+          <a href="https://wa.me/972598561044" class="btn outline" target="_blank"><i class="fab fa-whatsapp"></i> واتس اب</a>
         </div>
-        <div class="contact">
+
+        <div class="contact inline-social">
           <a href="https://instagram.com/malek_alastal_" target="_blank" class="social"><i class="fab fa-instagram"></i> malek_alastal_</a>
           <a href="https://facebook.com/MalekAlastal" target="_blank" class="social"><i class="fab fa-facebook"></i> Malek Alastal</a>
           <a href="https://github.com/malekk2006" target="_blank" class="social"><i class="fab fa-github"></i> malekk2006</a>
         </div>
       </div>
+
       <div class="hero-right">
-        <img src="assets/profile.jpg" alt="مالك العستال" class="hero-image">
+        <div class="profile-card">
+          <img src="assets/profile.jpg" alt="مالك العستال" class="hero-image">
+          <div class="profile-meta">
+            <h3>✧ ᴱᴷᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧</h3>
+            <p class="phone"><i class="fab fa-whatsapp"></i> +972 59-856-1044</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -108,10 +118,10 @@
           <p>© <span id="year"></span> ✧ ᴱᴷᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧</p>
         </div>
         <div class="right social-icons">
-          <a href="https://instagram.com/malek_alastal_" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://facebook.com/MalekAlastal" target="_blank"><i class="fab fa-facebook"></i></a>
-          <a href="https://github.com/malekk2006" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://wa.me/972598561044" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://instagram.com/malek_alastal_" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://facebook.com/MalekAlastal" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://github.com/malekk2006" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://wa.me/972598561044" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
     </footer>
