@@ -1,4 +1,4 @@
-// Interactions: theme toggle, language toggle, skills animation, small entrance animations
+// Interactions: theme toggle, language toggle, skills animation, entrance animations
 document.addEventListener('DOMContentLoaded', () => {
   const themeBtn = document.getElementById('themeToggle');
   const langBtn = document.getElementById('langToggle');
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     themeBtn.textContent = document.body.classList.contains('light') ? 'زر الظلام' : 'زر الضوء';
   }
 
-  // Language toggle with simple text map
+  // Language toggle with decorated bios
   let lang = localStorage.getItem('lang') || 'ar';
   applyLanguage(lang);
 
@@ -32,29 +32,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function applyLanguage(l){
     const doc = document.documentElement;
+    const bioAr = document.getElementById('bioDecorAr');
+    const bioEn = document.getElementById('bioDecorEn');
+
     if(l === 'en'){
       doc.lang = 'en'; doc.dir = 'ltr';
       langBtn.textContent = 'ع';
-      // swap visible texts
-      document.querySelector('.hero-title').textContent = 'Hello — I am Malek Alastal';
-      document.querySelector('.hero-sub').textContent = 'Student and Cybersecurity enthusiast. I share resources and projects.';
+      document.getElementById('heroTitle').textContent = 'Hello — I am Malek Alastal';
+      document.getElementById('heroSub').textContent = 'Student and Cybersecurity enthusiast. I share resources and projects.';
       document.querySelector('.btn.primary').textContent = 'Browse resources';
       document.querySelector('.btn.outline').innerHTML = '<i class="fab fa-whatsapp"></i> WhatsApp';
-      document.querySelector('#about h3').textContent = 'About Me';
-      document.querySelector('#college h3').textContent = 'University';
-      document.querySelector('#skills h3').textContent = 'Skills';
-      document.querySelector('#resources h3').textContent = 'Useful Links';
+      document.getElementById('aboutTitle').textContent = 'About Me';
+      document.getElementById('aboutText').textContent = 'I am Malek Alastal, focused on cybersecurity, vulnerability analysis, and building protective solutions.';
+      document.getElementById('collegeTitle').textContent = 'University College of Applied Sciences';
+      document.getElementById('collegeText').textContent = 'Studying at the University College of Applied Sciences with a focus on cybersecurity and practical technologies.';
+      document.getElementById('skillsTitle').textContent = 'Skills';
+      document.getElementById('resourcesTitle').textContent = 'Useful Links';
+      bioAr.hidden = true; bioEn.hidden = false;
     } else {
       doc.lang = 'ar'; doc.dir = 'rtl';
       langBtn.textContent = 'EN';
-      document.querySelector('.hero-title').textContent = 'مرحباً — أنا مالك العستال';
-      document.querySelector('.hero-sub').textContent = 'طالب ومتخصص في الأمن السيبراني. أشارك موارد، مشاريع، وروابط تعليمية مفيدة.';
+      document.getElementById('heroTitle').textContent = 'مرحباً — أنا مالك العستال';
+      document.getElementById('heroSub').textContent = 'طالب ومتخصص في الأمن السيبراني. أشارك موارد، مشاريع، وروابط تعليمية مفيدة.';
       document.querySelector('.btn.primary').textContent = 'تصفح الموارد';
       document.querySelector('.btn.outline').innerHTML = '<i class="fab fa-whatsapp"></i> واتس اب';
-      document.querySelector('#about h3').textContent = 'نبذة عني';
-      document.querySelector('#college h3').textContent = 'الكلية الجامعية للعلوم التطبيقية';
-      document.querySelector('#skills h3').textContent = 'المهارات';
-      document.querySelector('#resources h3').textContent = 'روابط تعليمية مفيدة';
+      document.getElementById('aboutTitle').textContent = 'نبذة عني';
+      document.getElementById('aboutText').textContent = 'أنا مالك العستال، مهتم بالأمن السيبراني، تحليل الثغرات، وبناء حلول حماية. أعمل على مشاريع تعليمية وأشارك موارد للمجتمع.';
+      document.getElementById('collegeTitle').textContent = 'الكلية الجامعية للعلوم التطبيقية';
+      document.getElementById('collegeText').textContent = 'دراسة في الكلية الجامعية للعلوم التطبيقية مع تركيز على الأمن السيبراني والتقنيات العملية.';
+      document.getElementById('skillsTitle').textContent = 'المهارات';
+      document.getElementById('resourcesTitle').textContent = 'روابط تعليمية مفيدة';
+      bioAr.hidden = false; bioEn.hidden = true;
     }
   }
 
@@ -72,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const skillsSection = document.getElementById('skills');
   if(skillsSection) obs.observe(skillsSection);
 
-  // Small entrance animations
+  // Entrance animation for hero image
   const heroImg = document.querySelector('.hero-image');
   if(heroImg){
     heroImg.style.transform = 'translateY(10px) scale(.98)';
