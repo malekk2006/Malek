@@ -1,24 +1,22 @@
-# Malek_AlAstal
 # Malek AlAstal — Personal Cyber Security Site
 
 Static site built with HTML, CSS, and JavaScript. Replace content and images in `assets/` with your own.
 
 ## Files to upload to assets
-- avatar.jpg
-- favicon.png
+- avatar.webp
+- favicon.jpeg
 - og-image.jpg
 - university-logo.png
-- project1.jpg
+- project1.webp
 - project2.jpg
-- project3.jpg
-- social-instagram.png
-- social-whatsapp.png
-- badge-cyber.png
+- project3.jpeg
+- social-instagram.jpeg
+- social-whatsapp.jpeg
+- badge-cyber.jpg
 
 ## Quick start
-1. Put the files in the repository root and the images in `assets/`.
-2. Edit `index.html` to update any text you want to change.
-3. Test locally:
+1. Commit these files to your repository root and keep images in `assets/`.
+2. Test locally:
    ```bash
    python -m http.server 8000
    # open http://localhost:8000
