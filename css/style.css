@@ -1,29 +1,29 @@
 :root{
-  --bg:#071026; --card:#0f1724; --muted:#9aa7bf; --accent:#00e6ff; --accent-2:#7c4dff;
+  --bg:#030417; --card:#0f1724; --muted:#9aa7bf; --accent:#00e6ff; --accent-2:#7c4dff;
   --glass: rgba(255,255,255,0.04);
-  --container:1100px;
-  --radius:12px;
-  --text:#e6eef8;
+  --container:1100px; --radius:12px; --text:#e6eef8;
+  --neon: rgba(0,230,255,0.12); --neon-strong: rgba(0,230,255,0.28);
+  --scanline: rgba(255,255,255,0.02);
 }
+
+/* Base */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;font-family:Inter,system-ui,Segoe UI,Arial,Helvetica,sans-serif;
   background:linear-gradient(180deg,#020617 0%, #071026 60%); color:var(--text);
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
+  overflow-x:hidden; position:relative;
 }
 
-/* background glow and subtle grid */
-#bg-canvas{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 10% 10%, rgba(0,230,255,0.06), transparent 8%),
-    radial-gradient(ellipse at 90% 80%, rgba(124,77,255,0.04), transparent 10%);
-}
+/* background containers (canvas overlays appended by JS) */
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+.cyber-grid{position:fixed;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen}
+.cyber-scanlines{position:fixed;inset:0;z-index:2;pointer-events:none;background-image: linear-gradient(transparent 92%, var(--scanline) 92%);background-size: 100% 4px;opacity:0.6;mix-blend-mode:overlay}
+.cyber-vignette{position:fixed;inset:0;z-index:3;pointer-events:none;background: radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%);mix-blend-mode:multiply;opacity:0.9}
 
-/* topbar */
-.topbar{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.2));backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+/* Topbar */
+.topbar{position:sticky;top:0;z-index:10;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.2));backdrop-filter: blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
 .container{max-width:var(--container);margin:0 auto;padding:18px}
 .topbar-inner{display:flex;align-items:center;gap:12px;justify-content:space-between}
 .brand{color:var(--accent);font-weight:700;text-decoration:none;font-size:18px}
@@ -31,41 +31,41 @@ body{
 .nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px}
 .nav a:hover{color:#fff;background:rgba(255,255,255,0.02)}
 
-/* controls */
+/* Controls */
 .controls{display:flex;gap:8px;align-items:center}
 .icon-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px;border-radius:8px;cursor:pointer}
 .icon-btn:hover{color:#fff;border-color:rgba(255,255,255,0.08)}
 
-/* hero */
+/* Hero */
 .hero{display:flex;gap:24px;align-items:center;padding:36px 0;z-index:10;position:relative}
 .hero-left{flex:1}
 .hero-right{width:260px;display:flex;justify-content:center}
 .avatar-wrap{width:220px;height:220px;border-radius:50%;padding:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 40px rgba(0,0,0,0.6)}
 .avatar{width:100%;height:100%;object-fit:cover;border-radius:50%;background:#111;border:4px solid rgba(255,255,255,0.06)}
 .lead{color:var(--muted);margin-top:8px}
-.btn{display:inline-block;padding:10px 16px;background:var(--accent);color:#001;border-radius:10px;text-decoration:none;font-weight:600;margin-right:8px}
+.btn{display:inline-block;padding:10px 16px;background:var(--accent);color:#001;border-radius:10px;text-decoration:none;font-weight:600;margin-right:8px;box-shadow:0 8px 30px rgba(0,230,255,0.06)}
 .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
 
-/* social row */
+/* Social row */
 .social-row{display:flex;gap:12px;margin-top:14px;align-items:center}
 .social{display:inline-flex;gap:8px;align-items:center;color:var(--muted);text-decoration:none}
 .social img{filter:drop-shadow(0 4px 12px rgba(0,0,0,0.6))}
 
-/* cards */
+/* Cards */
 .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:var(--radius);margin-top:20px;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02)}
 .univ-grid{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center}
 .univ-logo{max-width:100%;height:auto}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
 .spec ul, .spec ol{margin-left:18px;color:var(--muted)}
 
-/* project card */
+/* Project card */
 .project-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:10px;display:flex;flex-direction:column;gap:8px}
 .project-card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
 
-/* footer */
+/* Footer */
 .site-footer{text-align:center;padding:18px;color:var(--muted);margin-top:28px}
 
-/* responsive */
+/* Responsive */
 @media (max-width:900px){
   .hero{flex-direction:column;align-items:flex-start}
   .nav{display:none}
@@ -77,14 +77,23 @@ body{
   .mobile-only{display:none}
 }
 
-/* light theme override applied by JS */
+/* Light theme override */
 body.light{
   --bg:#f6f8ff; --card:#ffffff; --muted:#4b5563; --accent:#0b74de; --accent-2:#7c4dff; --text:#0b1220;
   background:linear-gradient(180deg,#f8fbff 0%, #eef4ff 60%);
 }
 body.light .topbar{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));border-bottom:1px solid rgba(10,20,40,0.03)}
 
-/* subtle cyber grid overlay */
+/* Neon accent animation */
+.hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:-20px;height:2px;
+  background:linear-gradient(90deg, transparent, var(--accent), transparent);
+  filter:blur(8px);opacity:0.9;z-index:5;transform:translateY(6px);
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:0.45;transform:translateY(6px)}50%{opacity:1;transform:translateY(0)}}
+
+/* subtle cyber grid overlay fallback */
 #bg-canvas::after{
   content:"";
   position:fixed;inset:0;z-index:0;pointer-events:none;
