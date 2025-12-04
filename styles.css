@@ -25,8 +25,6 @@ body{
   50%{transform:translateY(-30px) scale(1.02)}
   100%{transform:translateY(0) scale(1)}
 }
-
-/* Floating particles using pseudo elements */
 #bg-animated::before, #bg-animated::after{
   content:"";position:absolute;inset:0;background-image:
     radial-gradient(circle at 20% 30%, rgba(255,255,255,0.02) 0 2px, transparent 3px),
@@ -51,8 +49,7 @@ body{
 .hero-right{flex:1;display:flex;justify-content:center}
 .hero-title{font-size:28px;margin:0 0 8px}
 .hero-sub{margin:0 0 16px;color:var(--muted)}
-.hero-actions{display:flex;gap:10px;margin-bottom:12px}
-.inline-social .social{display:inline-block;margin-right:10px;color:var(--text);text-decoration:none}
+.bio-decor pre{white-space:pre-wrap;font-family:inherit;background:transparent;color:var(--text);margin:12px 0;padding:8px;border-radius:8px}
 .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.6);text-align:center;transform:translateY(0);transition:transform .6s, box-shadow .3s}
 .profile-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(2,6,23,0.8)}
 .hero-image{width:220px;height:220px;border-radius:16px;object-fit:cover;border:3px solid rgba(255,255,255,0.04);display:block;margin:0 auto;transition:transform .6s, filter .4s}
