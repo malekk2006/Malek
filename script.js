@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // Theme toggle with localStorage
+  // Theme toggle with localStorage and accessible labels
   const savedTheme = localStorage.getItem('theme') || 'dark';
   if (savedTheme === 'light') document.body.classList.add('light');
   updateThemeButton();
@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   function updateThemeButton() { themeBtn.textContent = document.body.classList.contains('light') ? 'Dark Mode' : 'Light Mode'; }
 
-  // Language toggle (EN <-> AR)
-  let lang = localStorage.getItem('lang') || 'en';
+  // Language toggle (EN <-> AR) — Arabic bio shown first by default
+  let lang = localStorage.getItem('lang') || 'ar';
   applyLanguage(lang);
   langBtn.addEventListener('click', () => {
     lang = (lang === 'en') ? 'ar' : 'en';
@@ -26,16 +26,34 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   function applyLanguage(l) {
     const doc = document.documentElement;
+    const bioAr = document.getElementById('bioAr');
+    const bioEn = document.getElementById('bioEn');
     if (l === 'ar') {
       doc.lang = 'ar'; doc.dir = 'rtl'; langBtn.textContent = 'EN';
-      document.getElementById('heroTitle').textContent = 'مرحباً — أنا مالك العستال';
-      document.getElementById('heroSub').textContent = 'طالب ومتخصص في الأمن السيبراني. أشارك موارد ومشاريع وروابط تعليمية.';
+      // Arabic hero title and bio (already present)
+      document.getElementById('heroTitle').textContent = '𓆩💻 مَـالِـك الأَسْطَـل 𓆪';
+      bioAr.style.display = 'block';
+      if (bioEn) bioEn.hidden = true;
+      // About and other headings in Arabic
+      document.getElementById('aboutTitle').textContent = 'نبذة عني';
+      document.getElementById('aboutText').textContent = 'أنا مالك العستال، مهتم بالأمن السيبراني، تحليل الثغرات، وبناء حلول حماية. أعمل على مشاريع تعليمية وأشارك موارد للمجتمع.';
+      document.getElementById('collegeTitle').textContent = '𓆩🎓 فخور بدخولي عالم التقنية والأمن';
+      document.getElementById('collegeText').innerHTML = '𓆩🏫 الكُـلـيـة الجـامـعـيـة لـلـعـلـوم التـطـبـيـقـيـة<br>✧ هنا بدأت رحلتي السيبرانية<br>✧ بالأمل والشغف والإيمان بنفسي 🌟';
+      document.getElementById('skillsTitle').textContent = 'المهارات';
+      document.getElementById('resourcesTitle').textContent = 'روابط تعليمية مفيدة';
       document.querySelector('.btn.primary').textContent = 'تصفح الموارد';
       document.querySelector('.btn.outline').innerHTML = '<i class="fab fa-whatsapp"></i> واتس اب';
     } else {
       doc.lang = 'en'; doc.dir = 'ltr'; langBtn.textContent = 'AR';
-      document.getElementById('heroTitle').textContent = 'Hello — I am Malek Alastal';
-      document.getElementById('heroSub').textContent = 'Student and Cybersecurity enthusiast. I share resources, projects, and learning links.';
+      // English hero title and bio
+      document.getElementById('heroTitle').textContent = '𓆩⚙ Malek Alastal 𓆪';
+      if (bioEn) { bioEn.hidden = false; bioAr.style.display = 'none'; }
+      document.getElementById('aboutTitle').textContent = 'About Me';
+      document.getElementById('aboutText').textContent = 'I am Malek Alastal, focused on cybersecurity, vulnerability analysis, and building protective solutions. I work on learning projects and share resources with the community.';
+      document.getElementById('collegeTitle').textContent = '𓆩🎓 Proudly stepped into the universe of tech & security';
+      document.getElementById('collegeText').innerHTML = '𓆩🏫 University College of Applied Sciences<br>✧ This is where my cyber journey begins<br>✧ With hope, passion, and faith in myself 🌟';
+      document.getElementById('skillsTitle').textContent = 'Skills';
+      document.getElementById('resourcesTitle').textContent = 'Useful Learning Links';
       document.querySelector('.btn.primary').textContent = 'Browse Resources';
       document.querySelector('.btn.outline').innerHTML = '<i class="fab fa-whatsapp"></i> WhatsApp';
     }
