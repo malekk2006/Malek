@@ -1,115 +1,139 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>✧ ᴱᴷᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧ — Cyber Security Portfolio</title>
+  <title>موقعي الاحترافي</title>
   <link rel="icon" href="assets/favicon.jpeg" />
+  <meta name="description" content="موقع شخصي / محفظة مشاريع احترافية" />
   <meta property="og:image" content="assets/og-image.jpg" />
-  <meta name="theme-color" content="#071026" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <div id="canvas-root" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <img src="assets/university-logo.png" alt="شعار" class="brand-logo" />
+        <span class="brand-text">اسمي أو اسم المشروع</span>
+      </a>
 
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="#home">✧ ᴱᴷᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧</a>
+      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="mainNav">
+        <span class="hamburger"></span>
+      </button>
 
-      <nav id="nav" class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#university">University</a>
-        <a href="#specialty">Specialty</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+      <nav id="mainNav" class="nav">
+        <ul>
+          <li><a href="#about">عنّي</a></li>
+          <li><a href="#projects">مشاريعي</a></li>
+          <li><a href="#contact">تواصل</a></li>
+        </ul>
       </nav>
-
-      <div class="controls">
-        <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
-        <button id="menu-toggle" class="icon-btn mobile-only" aria-label="Menu">☰</button>
-      </div>
     </div>
   </header>
 
-  <main class="container">
-    <section id="home" class="hero">
-      <div class="hero-left">
-        <h1>✧ ᴱᴷᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧</h1>
-        <p class="lead">Cyber Security Student — Network Security · Penetration Testing · Incident Response</p>
-        <div class="hero-actions">
-          <a class="btn" href="#projects">My Work</a>
-          <a class="btn ghost" href="#specialty">Learn More</a>
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>مرحباً، أنا مطور ومصمم واجهات</h1>
+          <p>أبني واجهات حديثة وسريعة مع اهتمام بالتفاصيل وتجربة المستخدم.</p>
+          <div class="hero-cta">
+            <a class="btn primary" href="#projects">عرض المشاريع</a>
+            <a class="btn outline" href="#contact">تواصل معي</a>
+          </div>
         </div>
-        <div class="links-row">
-          <a href="https://instagram.com/malek_alastal_" target="_blank"><img src="assets/social-instagram.jpeg" alt="Instagram"> @malek_alastal_</a>
-          <a href="https://wa.me/972598561044" target="_blank"><img src="assets/social-whatsapp.jpeg" alt="WhatsApp"> +972 59-856-1044</a>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="card-avatar">
-          <img src="assets/avatar.webp" alt="Malek AlAstal" class="avatar">
-          <div class="badge"><img src="assets/badge-cyber.jpg" alt="badge"></div>
+        <div class="hero-media">
+          <img src="assets/avatar.webp" alt="الصورة الشخصية" class="avatar" />
+          <div class="badges">
+            <img src="assets/badge-cyber.jpg" alt="شهادة" />
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="card">
-      <h2>About Me</h2>
-      <p>I am ✧ ᴱᴷᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧, a Cyber Security student focused on network security, penetration testing, and vulnerability analysis. I study at the College of Applied Sciences and build labs, tools, and educational content.</p>
-    </section>
-
-    <section id="university" class="card split">
-      <div class="left">
-        <img src="assets/university-logo.png" alt="University logo" class="univ-logo">
-      </div>
-      <div class="right">
-        <h2>College of Applied Sciences</h2>
-        <p>Practical programs, cyber labs, student clubs, and internship opportunities. Official site: <a href="https://my.ucas.edu.ps" target="_blank">my.ucas.edu.ps</a></p>
+    <section id="about" class="about">
+      <div class="container">
+        <h2>عنّي</h2>
+        <p>فقرة قصيرة عنك: خبرات، تخصصات، وأهدافك المهنية. اجعلها 2-3 جمل واضحة ومباشرة.</p>
+        <ul class="skills">
+          <li>HTML5</li>
+          <li>CSS3 / Flexbox / Grid</li>
+          <li>JavaScript</li>
+          <li>تصميم واجهات وتجربة مستخدم</li>
+        </ul>
       </div>
     </section>
 
-    <section id="specialty" class="card">
-      <h2>Cyber Security Specialty</h2>
-      <div class="spec-grid">
-        <div>
-          <h3>Core Areas</h3>
-          <ul>
-            <li>Network Security</li>
-            <li>Application Security</li>
-            <li>Malware Analysis</li>
-            <li>Incident Response</li>
-          </ul>
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2>مشاريعي</h2>
+        <div class="projects-grid">
+          <article class="project-card">
+            <img src="assets/project1.webp" alt="مشروع 1" />
+            <h3>مشروع 1</h3>
+            <p>وصف قصير للمشروع، التقنيات المستخدمة والنتيجة.</p>
+            <a class="project-link" href="#" aria-label="عرض مشروع 1">عرض</a>
+          </article>
+
+          <article class="project-card">
+            <img src="assets/project2.jpg" alt="مشروع 2" />
+            <h3>مشروع 2</h3>
+            <p>وصف قصير للمشروع، التقنيات المستخدمة والنتيجة.</p>
+            <a class="project-link" href="#" aria-label="عرض مشروع 2">عرض</a>
+          </article>
+
+          <article class="project-card">
+            <img src="assets/project3.jpeg" alt="مشروع 3" />
+            <h3>مشروع 3</h3>
+            <p>وصف قصير للمشروع، التقنيات المستخدمة والنتيجة.</p>
+            <a class="project-link" href="#" aria-label="عرض مشروع 3">عرض</a>
+          </article>
         </div>
-        <div>
-          <h3>Practical Path</h3>
-          <ol>
-            <li>Networking & Linux</li>
-            <li>Python for Security</li>
-            <li>Tools: Wireshark, Nmap, Metasploit</li>
-            <li>CTFs and Home Lab</li>
-          </ol>
-        </div>
       </div>
     </section>
 
-    <section id="projects" class="card">
-      <h2>Projects</h2>
-      <div class="projects-grid" id="projects-list"></div>
-    </section>
+    <section id="contact" class="contact">
+      <div class="container contact-inner">
+        <div class="contact-card">
+          <h2>تواصل معي</h2>
+          <p>يمكنك مراسلتي عبر وسائل التواصل أو إرسال بريد إلكتروني.</p>
+          <div class="socials">
+            <a href="#" class="social" id="instagram">
+              <img src="assets/social-instagram.jpeg" alt="انستغرام" /> انستغرام
+            </a>
+            <a href="#" class="social" id="whatsapp">
+              <img src="assets/social-whatsapp.jpeg" alt="واتساب" /> واتساب
+            </a>
+          </div>
+        </div>
 
-    <section id="contact" class="card">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
-      <p>Instagram: <a href="https://instagram.com/malek_alastal_" target="_blank">@malek_alastal_</a></p>
-      <p>WhatsApp: <a href="https://wa.me/972598561044" target="_blank">+972 59-856-1044</a></p>
+        <form class="contact-form" action="#" method="post" onsubmit="return false;">
+          <label for="name">الاسم</label>
+          <input id="name" name="name" type="text" required />
+
+          <label for="email">البريد الإلكتروني</label>
+          <input id="email" name="email" type="email" required />
+
+          <label for="message">الرسالة</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <button class="btn primary" type="submit">إرسال</button>
+        </form>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    © <span id="year"></span> ✧ ᴱᴷᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <img src="assets/university-logo.png" alt="شعار" class="footer-logo" />
+        <p>© <span id="year"></span> كل الحقوق محفوظة</p>
+      </div>
+      <div class="footer-right">
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">شروط الاستخدام</a>
+      </div>
+    </div>
   </footer>
 
   <script src="js/main.js"></script>
