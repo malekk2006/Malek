@@ -12,28 +12,21 @@
 <body>
   <div id="bg-animated" aria-hidden="true"></div>
 
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="container header-inner">
       <div class="brand">
-        <img
-          src="assets/profile.webp"
-          alt="Profile photo Malek Alastal"
-          class="avatar"
-          id="avatarImg"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='assets/profile-fallback.jpg';"
-        />
+        <img src="assets/profile.webp" alt="Profile photo" class="avatar" id="avatarImg" loading="lazy" onerror="this.onerror=null;this.src='assets/profile-fallback.jpg';" />
         <div class="brand-text">
           <h1 class="name">✧ ᴱᴺᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧</h1>
           <p class="role">CYBER SECURITY</p>
         </div>
       </div>
 
-      <button id="navToggle" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span class="hamburger"></span>
+      <button id="navToggle" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav">
+        <span class="hamburger" aria-hidden="true"></span>
       </button>
 
-      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation" role="navigation">
         <a href="#home" class="nav-link">Home</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#college" class="nav-link">College</a>
@@ -55,7 +48,7 @@
   </header>
 
   <main class="container">
-    <section class="hero gs-reveal" id="home">
+    <section class="hero gs-reveal" id="home" role="region" aria-label="Home">
       <div class="hero-left">
         <h2 class="hero-title" id="heroTitle">𓆩💻 مَـالِـك الأَسْطَـل 𓆪</h2>
 
@@ -81,28 +74,15 @@
         </div>
 
         <div class="contact inline-social" role="navigation" aria-label="Social links">
-          <a href="https://instagram.com/malek_alastal_" target="_blank" class="social social-instagram" rel="noopener" aria-label="Instagram">
-            <i class="fab fa-instagram" aria-hidden="true"></i>
-          </a>
-          <a href="https://facebook.com/MalekAlastal" target="_blank" class="social social-facebook" rel="noopener" aria-label="Facebook">
-            <i class="fab fa-facebook" aria-hidden="true"></i>
-          </a>
-          <a href="https://github.com/malekk2006" target="_blank" class="social social-github" rel="noopener" aria-label="GitHub">
-            <i class="fab fa-github" aria-hidden="true"></i>
-          </a>
+          <a href="https://instagram.com/malek_alastal_" target="_blank" class="social social-instagram" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://facebook.com/MalekAlastal" target="_blank" class="social social-facebook" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+          <a href="https://github.com/malekk2006" target="_blank" class="social social-github" rel="noopener" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
         </div>
       </div>
 
       <div class="hero-right">
         <div class="profile-card gs-reveal">
-          <img
-            src="assets/profile.webp"
-            alt="Malek Alastal portrait"
-            class="hero-image"
-            id="heroImage"
-            loading="lazy"
-            onerror="this.onerror=null;this.src='assets/profile-fallback.jpg';"
-          />
+          <img src="assets/profile.webp" alt="Malek portrait" class="hero-image" id="heroImage" loading="lazy" onerror="this.onerror=null;this.src='assets/profile-fallback.jpg';" />
           <div class="profile-meta">
             <h3 id="profileName">✧ ᴱᴺᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧</h3>
             <p class="phone"><i class="fab fa-whatsapp"></i> +972 59-856-1044</p>
@@ -111,34 +91,23 @@
       </div>
     </section>
 
-    <section id="about" class="card gs-reveal">
+    <section id="about" class="card gs-reveal" role="region" aria-label="About">
       <h3 id="aboutTitle">About Me</h3>
       <p id="aboutText">I am Malek Alastal, focused on cybersecurity, vulnerability analysis, and building protective solutions. I work on learning projects and share resources with the community.</p>
     </section>
 
-    <section id="college" class="card row gs-reveal">
+    <section id="college" class="card row gs-reveal" role="region" aria-label="College">
       <div class="col">
         <h3 id="collegeTitle">𓆩🎓 Proudly stepped into the universe of tech & security</h3>
-        <p id="collegeText">
-          𓆩🏫 University College of Applied Sciences<br>
-          ✧ This is where my cyber journey begins<br>
-          ✧ With hope, passion, and faith in myself 🌟
-        </p>
+        <p id="collegeText">𓆩🏫 University College of Applied Sciences<br>✧ This is where my cyber journey begins<br>✧ With hope, passion, and faith in myself 🌟</p>
         <a href="https://my.ucas.edu.ps" target="_blank" class="btn" rel="noopener">College Website</a>
       </div>
       <div class="col">
-        <img
-          src="assets/college.png"
-          alt="University College building"
-          class="college-img"
-          id="collegeImg"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='assets/college-fallback.jpg';"
-        />
+        <img src="assets/college.png" alt="College building" class="college-img" id="collegeImg" loading="lazy" onerror="this.onerror=null;this.src='assets/college-fallback.jpg';" />
       </div>
     </section>
 
-    <section id="skills" class="card gs-reveal">
+    <section id="skills" class="card gs-reveal" role="region" aria-label="Skills">
       <h3 id="skillsTitle">Skills</h3>
       <div class="skills-list">
         <div class="skill">
@@ -164,7 +133,7 @@
       </div>
     </section>
 
-    <section id="resources" class="card gs-reveal">
+    <section id="resources" class="card gs-reveal" role="region" aria-label="Resources">
       <h3 id="resourcesTitle">Useful Learning Links</h3>
       <ul class="resources-list">
         <li><a href="https://www.cybrary.it" target="_blank" rel="noopener">Cybrary</a></li>
@@ -174,14 +143,14 @@
       </ul>
     </section>
 
-    <section id="contact" class="card gs-reveal">
+    <section id="contact" class="card gs-reveal" role="region" aria-label="Contact">
       <h3>Contact</h3>
       <p>WhatsApp: <a href="https://wa.me/972598561044" target="_blank" rel="noopener">+972 59-856-1044</a></p>
       <p>Instagram: <a href="https://instagram.com/malek_alastal_" target="_blank" rel="noopener">@malek_alastal_</a></p>
       <p>GitHub: <a href="https://github.com/malekk2006" target="_blank" rel="noopener">malekk2006</a></p>
     </section>
 
-    <footer class="site-footer gs-reveal">
+    <footer class="site-footer gs-reveal" role="contentinfo">
       <div class="footer-inner">
         <div class="left"><p>© <span id="year"></span> ✧ ᴱᴺᴳ.ᴹᴬᴸᴱᴷ ᴬˡᵃˢᵗᵃˡ ✧</p></div>
         <div class="right social-icons">
