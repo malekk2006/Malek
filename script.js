@@ -1,3 +1,4 @@
+// Main interactions + GSAP animations
 document.addEventListener('DOMContentLoaded', () => {
   const themeBtn = document.getElementById('themeToggle');
   const langBtn = document.getElementById('langToggle');
@@ -77,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     navToggle.addEventListener('click', () => {
       const isOpen = mainNav.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      // animate hamburger to X
       navToggle.classList.toggle('open', isOpen);
     });
 
@@ -93,24 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Skills animation when in view (with touch-friendly trigger)
+  // Skills animation when in view (GSAP will handle; fallback simple)
   const fills = document.querySelectorAll('.skill-fill');
-  const animateSkills = () => {
-    fills.forEach(f => {
-      const val = parseInt(f.getAttribute('data-value')) || 0;
-      f.style.width = val + '%';
-      f.setAttribute('aria-valuenow', val);
-    });
-  };
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) animateSkills();
-    });
-  }, { threshold: 0.35 });
-  const skillsSection = document.getElementById('skills');
-  if (skillsSection) obs.observe(skillsSection);
+  fills.forEach(f => f.style.width = '0%');
 
-  // Add small touch ripple on buttons (mobile feel)
+  // Touch feedback for buttons
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('touchstart', () => btn.classList.add('touched'));
     btn.addEventListener('touchend', () => setTimeout(()=>btn.classList.remove('touched'), 120));
@@ -118,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('mouseup', () => setTimeout(()=>btn.classList.remove('touched'), 80));
   });
 
-  // Hero image entrance animation
+  // Hero image entrance
   const heroImg = document.querySelector('.hero-image');
   if (heroImg) {
     heroImg.style.transform = 'translateY(10px) scale(.98)';
@@ -146,4 +133,114 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navToggle) { navToggle.setAttribute('aria-expanded', 'false'); navToggle.classList.remove('open'); }
     }
   });
+
+  // === GSAP animations (if GSAP loaded) ===
+  if (typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Fade-in for .gs-reveal
+    gsap.utils.toArray('.gs-reveal').forEach((el) => {
+      gsap.fromTo(el,
+        { autoAlpha: 0, y: 18 },
+        {
+          duration: 0.9,
+          autoAlpha: 1,
+          y: 0,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    });
+
+    // Staggered reveal for lists
+    const lists = document.querySelectorAll('.resources-list, .inline-social, .social-icons');
+    lists.forEach(list => {
+      const items = Array.from(list.children);
+      if (!items.length) return;
+      gsap.from(items, {
+        opacity: 0,
+        y: 10,
+        stagger: 0.12,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: list,
+          start: 'top 90%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    });
+
+    // Skill bars animation
+    const skillFills = document.querySelectorAll('.skill-fill');
+    if (skillFills.length) {
+      gsap.fromTo(skillFills,
+        { width: '0%' },
+        {
+          width: (i, el) => el.getAttribute('data-value') + '%',
+          duration: 1.2,
+          ease: 'power3.out',
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: '#skills',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          }
+        }
+      );
+    }
+
+    // Hero image subtle parallax
+    if (heroImg) {
+      gsap.to(heroImg, {
+        y: -20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.6
+        }
+      });
+    }
+
+    // Button hover micro animation
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('mouseenter', () => gsap.to(btn, { scale: 1.03, duration: 0.18, ease: 'power1.out' }));
+      btn.addEventListener('mouseleave', () => gsap.to(btn, { scale: 1, duration: 0.18, ease: 'power1.out' }));
+    });
+
+    // Respect reduced motion
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduce && reduce.matches) {
+      ScrollTrigger.getAll().forEach(st => st.disable());
+    }
+  } else {
+    // Fallback: simple reveal when scrolling (no GSAP)
+    const revealOnScroll = () => {
+      document.querySelectorAll('.gs-reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.85) {
+          el.style.opacity = 1;
+          el.style.transform = 'translateY(0)';
+        }
+      });
+      // simple skill fill
+      const skillsRect = document.getElementById('skills')?.getBoundingClientRect();
+      if (skillsRect && skillsRect.top < window.innerHeight * 0.85) {
+        document.querySelectorAll('.skill-fill').forEach(f => {
+          const val = f.getAttribute('data-value') || 0;
+          f.style.width = val + '%';
+          f.setAttribute('aria-valuenow', val);
+        });
+      }
+    };
+    revealOnScroll();
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
+  }
 });
