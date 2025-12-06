@@ -1,4 +1,4 @@
-// Main interactions + GSAP animations
+// Main interactions + GSAP animations + robust mobile nav behavior
 document.addEventListener('DOMContentLoaded', () => {
   const themeBtn = document.getElementById('themeToggle');
   const langBtn = document.getElementById('langToggle');
@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const langBtnNav = document.getElementById('langToggleNav');
   const navToggle = document.getElementById('navToggle');
   const mainNav = document.getElementById('mainNav');
+  const navLinks = document.querySelectorAll('.nav-link');
   const yearEl = document.getElementById('year');
 
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -73,34 +74,65 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   applyLanguage(lang);
 
-  // Nav toggle (hamburger) for mobile
+  // Nav toggle (hamburger) for mobile with robust behavior
   if (navToggle && mainNav) {
     navToggle.addEventListener('click', () => {
       const isOpen = mainNav.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       navToggle.classList.toggle('open', isOpen);
+
+      // animate nav links with GSAP if available
+      if (typeof gsap !== 'undefined') {
+        const items = Array.from(mainNav.querySelectorAll('.nav-link'));
+        if (isOpen) {
+          gsap.fromTo(items, { autoAlpha: 0, x: 18 }, { autoAlpha: 1, x: 0, stagger: 0.06, duration: 0.36, ease: 'power2.out' });
+        }
+      }
     });
 
-    // Close nav when clicking a link (mobile)
-    mainNav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        if (mainNav.classList.contains('open')) {
-          mainNav.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          navToggle.classList.remove('open');
+    // Ensure links close menu and scroll smoothly on mobile and desktop
+    navLinks.forEach(link => {
+      // Use pointerup to support touch and mouse reliably
+      link.addEventListener('pointerup', (e) => {
+        // allow default for external links (target _blank)
+        const href = link.getAttribute('href') || '';
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            // close mobile nav if open
+            if (mainNav.classList.contains('open')) {
+              mainNav.classList.remove('open');
+              navToggle.classList.remove('open');
+              navToggle.setAttribute('aria-expanded', 'false');
+            }
+            // smooth scroll
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // update focus for accessibility
+            target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+            window.setTimeout(() => target.removeAttribute('tabindex'), 1200);
+          }
+        } else {
+          // external link: close menu on mobile then allow navigation
+          if (mainNav.classList.contains('open')) {
+            mainNav.classList.remove('open');
+            navToggle.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
         }
-      });
+      }, { passive: true });
     });
   }
 
-  // Skills animation when in view (GSAP will handle; fallback simple)
+  // Skills initial state
   const fills = document.querySelectorAll('.skill-fill');
   fills.forEach(f => f.style.width = '0%');
 
   // Touch feedback for buttons
   document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('touchstart', () => btn.classList.add('touched'));
-    btn.addEventListener('touchend', () => setTimeout(()=>btn.classList.remove('touched'), 120));
+    btn.addEventListener('touchstart', () => btn.classList.add('touched'), { passive: true });
+    btn.addEventListener('touchend', () => setTimeout(()=>btn.classList.remove('touched'), 120), { passive: true });
     btn.addEventListener('mousedown', () => btn.classList.add('touched'));
     btn.addEventListener('mouseup', () => setTimeout(()=>btn.classList.remove('touched'), 80));
   });
@@ -117,8 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200);
   }
 
-  // Smooth scroll for internal links
+  // Smooth scroll for internal links outside nav (works on desktop too)
   document.querySelectorAll('a[href^="#"]').forEach(a => {
+    // skip if handled by navLinks pointerup above
+    if (a.closest('.main-nav')) return;
     a.addEventListener('click', e => {
       e.preventDefault();
       const target = document.querySelector(a.getAttribute('href'));
@@ -138,10 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof gsap !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Fade-in for .gs-reveal
+    // Fade-in and slide-up for .gs-reveal sections
     gsap.utils.toArray('.gs-reveal').forEach((el) => {
       gsap.fromTo(el,
-        { autoAlpha: 0, y: 18 },
+        { autoAlpha: 0, y: 22 },
         {
           duration: 0.9,
           autoAlpha: 1,
@@ -149,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ease: 'power3.out',
           scrollTrigger: {
             trigger: el,
-            start: 'top 85%',
+            start: 'top 88%',
             end: 'bottom 20%',
             toggleActions: 'play none none reverse'
           }
@@ -157,7 +191,16 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     });
 
-    // Staggered reveal for lists
+    // Staggered reveal for nav links on open (also run once on load for desktop)
+    const navItems = Array.from(document.querySelectorAll('.main-nav .nav-link'));
+    if (navItems.length) {
+      // small entrance on page load for desktop
+      if (window.innerWidth > 820) {
+        gsap.from(navItems, { autoAlpha: 0, y: -6, stagger: 0.06, duration: 0.6, ease: 'power2.out' });
+      }
+    }
+
+    // Staggered reveal for lists (resources, social icons)
     const lists = document.querySelectorAll('.resources-list, .inline-social, .social-icons');
     lists.forEach(list => {
       const items = Array.from(list.children);
@@ -170,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: list,
-          start: 'top 90%',
+          start: 'top 92%',
           toggleActions: 'play none none reverse'
         }
       });
@@ -225,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealOnScroll = () => {
       document.querySelectorAll('.gs-reveal').forEach(el => {
         const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.85) {
+        if (rect.top < window.innerHeight * 0.88) {
           el.style.opacity = 1;
           el.style.transform = 'translateY(0)';
         }
